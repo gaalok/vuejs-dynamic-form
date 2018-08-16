@@ -1,13 +1,17 @@
 <template>
   <div class="dy-select">
-    <select name="" id="">
+    <select
+      :value="modelValue"
+      @change="handleChange"
+      :readonly="readonly"
+      :disabled="disabled">
+
       <option value="">{{ placeholder }}</option>
 
       <option
         v-for="item in realOptions"
         :key="item.value"
-        :value="item.value"
-        @change="handleChange">
+        :value="item.value">
         {{ item.label }}
       </option>
     </select>
@@ -21,7 +25,20 @@ export default {
   props: {
     options: Array,
     optionsUrl: String,
+    listen: String,
+
     placeholder: String,
+    readonly: Boolean,
+    disabled: Boolean,
+
+    modelKey: {
+      required: true,
+      type: String,
+    },
+
+    modelValue: {
+      type: [String, Number],
+    },
   },
 
   data() {
@@ -60,7 +77,11 @@ export default {
     },
 
     handleChange(e) {
-      console.log(e);
+      this.$emit('change', {
+        listen: this.listen,
+        modelKey: this.modelKey,
+        modelValue: e.target.value,
+      });
     },
   },
 };

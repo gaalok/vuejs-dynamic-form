@@ -16,6 +16,11 @@ export default {
   name: 'DyInput',
 
   props: {
+    listen: String,
+    placeholder: String,
+    readonly: Boolean,
+    disabled: Boolean,
+
     modelKey: {
       required: true,
       type: String,
@@ -29,15 +34,12 @@ export default {
       required: true,
       type: String,
     },
-
-    placeholder: String,
-    readonly: Boolean,
-    disabled: Boolean,
   },
 
   methods: {
     handleInput(e) {
-      this.$emit('input', {
+      this.$emit('change', {
+        listen: this.listen,
         modelKey: this.modelKey,
         modelValue: e.target.value,
       });
