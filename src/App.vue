@@ -19,18 +19,32 @@ export default {
       formData: {},
 
       formConfig: {
-        labelWidth: 100,
+        labelWidth: 60,
         inline: true,
         itemList: [
           {
             type: 'text',
             label: '账号',
             modelKey: 'username',
+            placeholder: '请输入账号',
           },
           {
             type: 'password',
             label: '密码',
             modelKey: 'password',
+            placeholder: '请输入密码',
+          },
+          {
+            type: 'select',
+            label: '省',
+            modelKey: 'province',
+            placeholder: '请选择省',
+            options: [
+              { value: '1', label: '111' },
+              { value: '2', label: '122' },
+              { value: '3', label: '133' },
+            ],
+            optionsUrl: '/mock/options.json',
           },
         ],
       },

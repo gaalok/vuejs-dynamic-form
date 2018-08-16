@@ -1,14 +1,38 @@
 <template>
   <div class="dy-form-item">
+
     <label class="dy-label"
       :style="labelStyle">{{itemConfig.label}}</label>
 
-    <dy-input
-      :model-key="itemConfig.modelKey"
-      :type="itemConfig.type"
-      v-bind="$attrs"
-      v-on="$listeners"
-      ></dy-input>
+    <template
+      v-if="itemConfig.type === 'text'
+        || itemConfig.type === 'password'
+        || itemConfig.type === 'email'">
+
+      <dy-input
+        :model-key="itemConfig.modelKey"
+        :type="itemConfig.type"
+        v-bind="$attrs"
+        v-on="$listeners"
+        :placeholder="itemConfig.placeholder"
+        :readonly="itemConfig.readonly"
+        :disabled="itemConfig.disabled">
+      </dy-input>
+    </template>
+
+    <template
+      v-else-if="itemConfig.type === 'select'">
+      <dy-select
+        :model-key="itemConfig.modelKey"
+        :options="itemConfig.options"
+        :optionsUrl="itemConfig.optionsUrl"
+        v-bind="$attrs"
+        v-on="$listeners"
+        :placeholder="itemConfig.placeholder"
+        :readonly="itemConfig.readonly"
+        :disabled="itemConfig.disabled">
+      </dy-select>
+    </template>
 
   </div>
 </template>

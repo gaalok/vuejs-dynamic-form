@@ -3,7 +3,10 @@
     <input
       :value="modelValue"
       @input="handleInput"
-      :type="type">
+      :type="type"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :disabled="disabled">
   </div>
 </template>
 
@@ -26,6 +29,10 @@ export default {
       required: true,
       type: String,
     },
+
+    placeholder: String,
+    readonly: Boolean,
+    disabled: Boolean,
   },
 
   methods: {
@@ -38,9 +45,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.dy-input {
-  display: inline-block;
-}
-</style>
