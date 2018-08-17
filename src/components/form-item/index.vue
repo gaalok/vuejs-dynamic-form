@@ -50,6 +50,19 @@
       </dy-button>
     </template>
 
+    <template
+      v-else-if="itemConfig.type === 'date'">
+      <dy-date
+        v-bind="$attrs"
+        v-on="$listeners"
+
+        :listen="itemConfig.listen"
+
+        :placeholder="itemConfig.placeholder"
+        :disabled="itemConfig.disabled"
+      ></dy-date>
+    </template>
+
   </div>
 </template>
 

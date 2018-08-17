@@ -20,7 +20,7 @@ export default {
     return {
       formData: {},
 
-      labelWidth: 60,
+      labelWidth: 80,
       inline: true,
 
       formList: [
@@ -51,8 +51,15 @@ export default {
           listen: 'provinceChange',
         },
         {
+          label: '开始时间',
+          type: 'date',
+          modelKey: 'startDate',
+          placeholder: '请选择日期',
+        },
+        {
           type: 'button',
           label: '提交',
+          modelKey: 'startDate',
           listen: 'formSubmit',
         },
       ],

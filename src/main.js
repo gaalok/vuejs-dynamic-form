@@ -6,6 +6,7 @@ import Form from './components/form/index.vue';
 import FormItem from './components/form-item/index.vue';
 import Select from './components/select/index.vue';
 import Button from './components/button/index.vue';
+import Date from './components/date/index.vue';
 
 [
   Input,
@@ -13,6 +14,7 @@ import Button from './components/button/index.vue';
   FormItem,
   Select,
   Button,
+  Date,
 ].forEach(component => Vue.component(component.name, component));
 
 Vue.config.productionTip = false;
