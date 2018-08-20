@@ -47,7 +47,7 @@ export default {
             { value: '2', label: '122' },
             { value: '3', label: '133' },
           ],
-          optionsUrl: '/mock/options.json',
+          // optionsUrl: './mock/options.json',
           listen: 'provinceChange',
         },
         {
@@ -92,12 +92,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-</style>

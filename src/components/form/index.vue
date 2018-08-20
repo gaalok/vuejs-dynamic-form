@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .dy-form-inline {
   .dy-form-item, .dy-input, .dy-select, .dy-date {
     display: inline-block;
