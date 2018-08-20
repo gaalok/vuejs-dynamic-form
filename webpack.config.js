@@ -10,20 +10,20 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  // externals: {
-  //   'vuejs-datepicker': {
-  //     root: 'vuejsDatepicker',
-  //     commonjs: 'vuejsDatepicker',
-  //     commonjs2: 'vuejsDatepicker',
-  //     amd: 'vuejsDatepicker'
-  //   },
-  //   'vuejs-datepicker/dist/locale': {
-  //     root: 'vuejsDatepickerLocale',
-  //     commonjs: 'vuejsDatepickerLocale',
-  //     commonjs2: 'vuejsDatepickerLocale',
-  //     amd: 'vuejsDatepickerLocale'
-  //   }
-  // },
+  externals: {
+    'vuejs-datepicker': {
+      root: 'vuejsDatepicker',
+      commonjs: 'vuejs-datepicker',
+      commonjs2: 'vuejs-datepicker',
+      amd: 'vuejs-datepicker'
+    },
+    'vuejs-datepicker/dist/locale': {
+      root: 'vuejsDatepickerLanguage',
+      commonjs: 'vuejs-datepicker/dist/locale',
+      commonjs2: 'vuejs-datepicker/dist/locale',
+      amd: 'vuejs-datepicker/dist/locale'
+    }
+  },
   module: {
     rules: [
       {
