@@ -3,7 +3,7 @@ import Form from './components/form';
 import FormItem from './components/form-item';
 import Select from './components/select';
 import Button from './components/button';
-import Date from './components/date';
+import Datepicker from './components/datepicker';
 
 const components = [
   Input,
@@ -11,7 +11,7 @@ const components = [
   FormItem,
   Select,
   Button,
-  Date,
+  Datepicker,
 ];
 
 const install = (Vue) => {

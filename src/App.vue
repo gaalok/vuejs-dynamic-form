@@ -52,14 +52,13 @@ export default {
         },
         {
           label: '开始时间',
-          type: 'date',
+          type: 'datepicker',
           modelKey: 'startDate',
           placeholder: '请选择日期',
         },
         {
           type: 'button',
           label: '提交',
-          modelKey: 'startDate',
           listen: 'formSubmit',
         },
       ],

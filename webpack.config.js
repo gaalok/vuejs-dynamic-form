@@ -2,27 +2,28 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: process.env.NODE_ENV === 'production' ? './src/vue-dynamic-form.js' : './src/main.js',
+  entry: process.env.NODE_ENV === 'production' ? './src/vuejs-dynamic-form.js' : './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: process.env.NODE_ENV === 'production' ? 'vue-dynamic-form.js' : 'build.js',
+    filename: process.env.NODE_ENV === 'production' ? 'vuejs-dynamic-form.js' : 'build.js',
+    library: 'vuejsDynamicForm',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
   externals: {
-    'vuejs-datepicker': {
-      root: 'vuejsDatepicker',
-      commonjs: 'vuejs-datepicker',
-      commonjs2: 'vuejs-datepicker',
-      amd: 'vuejs-datepicker'
-    },
-    'vuejs-datepicker/dist/locale': {
-      root: 'vuejsDatepickerLanguage',
-      commonjs: 'vuejs-datepicker/dist/locale',
-      commonjs2: 'vuejs-datepicker/dist/locale',
-      amd: 'vuejs-datepicker/dist/locale'
-    }
+    // 'vuejs-datepicker': {
+    //   root: 'vuejsDatepicker',
+    //   commonjs: 'vuejs-datepicker',
+    //   commonjs2: 'vuejs-datepicker',
+    //   amd: 'vuejs-datepicker'
+    // },
+    // 'vuejs-datepicker/dist/locale': {
+    //   root: 'vuejsDatepickerLanguage',
+    //   commonjs: 'vuejs-datepicker/dist/locale',
+    //   commonjs2: 'vuejs-datepicker/dist/locale',
+    //   amd: 'vuejs-datepicker/dist/locale'
+    // }
   },
   module: {
     rules: [

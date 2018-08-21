@@ -51,8 +51,8 @@
     </template>
 
     <template
-      v-else-if="itemConfig.type === 'date'">
-      <dy-date
+      v-else-if="itemConfig.type === 'datepicker'">
+      <dy-datepicker
         v-bind="$attrs"
         v-on="$listeners"
 
@@ -60,8 +60,10 @@
 
         :placeholder="itemConfig.placeholder"
         :disabled="itemConfig.disabled"
-      ></dy-date>
+      ></dy-datepicker>
     </template>
+
+    <div v-else>未知类型组件</div>
 
   </div>
 </template>

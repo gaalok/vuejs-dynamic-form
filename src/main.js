@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueDynamicForm from './vue-dynamic-form'
+import vuejsDynamicForm from './vuejs-dynamic-form'
 
-Vue.use(VueDynamicForm)
+Vue.use(vuejsDynamicForm)
 
 new Vue({
   el: '#app',

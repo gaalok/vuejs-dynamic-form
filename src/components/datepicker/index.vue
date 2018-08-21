@@ -6,21 +6,20 @@
       :placeholder="placeholder"
       :disabled="disabled"
       v-model="date"
-      @selected="handleSelected"
-      >
+      @selected="handleSelected">
     </datepicker>
   </div>
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker';
+import datepicker from 'vuejs-datepicker';
 import { zh } from 'vuejs-datepicker/dist/locale';
 
 export default {
-  name: 'DyDate',
+  name: 'DyDatepicker',
 
   components: {
-    Datepicker,
+    datepicker,
   },
 
   props: {
