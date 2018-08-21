@@ -1,5 +1,7 @@
 <template>
-  <div class="dy-form-item">
+  <div
+    class="dy-form-item"
+    :class="[formItemClass]">
 
     <label class="dy-label"
       v-if="itemConfig.type !== 'button'"
@@ -79,6 +81,8 @@ export default {
       type: Object,
     },
 
+    formItemClass: [String, Object, Array],
+
     labelWidth: {
       type: [Number, String],
       default: '',
@@ -101,15 +105,3 @@ export default {
   },
 };
 </script>
-
-<style lang="less">
-.dy-form-item {
-  padding: 10px;
-}
-
-.dy-label {
-  display: inline-block;
-  padding-right: 12px;
-  text-align: right;
-}
-</style>

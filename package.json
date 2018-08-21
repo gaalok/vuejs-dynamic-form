@@ -5,7 +5,7 @@
   "author": "gaalok",
   "license": "MIT",
   "private": false,
-  "main": "dist/vue-dynamic-form.js",
+  "main": "dist/vuejs-dynamic-form.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",

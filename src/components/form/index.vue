@@ -1,6 +1,7 @@
 <template>
   <div>
     <form
+      class="dy-form"
       :class="{
         'dy-form-inline': inline,
         'dy-label-left': labelPosition === 'left',
@@ -64,16 +65,5 @@ export default {
 </script>
 
 <style lang="less">
-.dy-form-inline {
-  .dy-form-item, .dy-input, .dy-select, .dy-date {
-    display: inline-block;
-  }
-}
-
-.dy-label-left {
-  .dy-label {
-    text-align-last: left;
-  }
-}
+@import '~../../styles/index.less';
 </style>
-

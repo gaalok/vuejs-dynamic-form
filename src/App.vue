@@ -4,6 +4,7 @@
       :model="formData"
       :form-list="formList"
       :label-width="labelWidth"
+      form-item-class="form-group"
       :inline="inline"
       @usernameChange="handleChange"
       @provinceChange="handleChange"
