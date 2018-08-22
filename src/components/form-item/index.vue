@@ -1,7 +1,7 @@
 <template>
   <div
     class="dy-form-item"
-    :class="[formItemClass]">
+    :class="[itemConfig.type !== 'button' ? formItemClass : '']">
 
     <label class="dy-label"
       v-if="itemConfig.type !== 'button'"

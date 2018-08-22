@@ -37,6 +37,7 @@ export default {
       const config = {
         labelWidth: 80,
         inline: true,
+        formItemClass: 'form-group',
         formList: [
           {
             type: 'text',
