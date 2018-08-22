@@ -24,7 +24,13 @@ export default {
 
   methods: {
     handleClick(e) {
-      this.$emit(this.listen, e);
+      if(this.listen) {
+        this.$emit(this.listen, e);
+      }
+
+      if(this.nativeType === 'reset') {
+        this.$emit('reset');
+      }
     },
   },
 };

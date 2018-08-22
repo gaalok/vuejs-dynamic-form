@@ -91,7 +91,7 @@ export default {
       type: Object,
     },
 
-    formItemClass: [String, Object, Array],
+    formItemClass: String,
 
     labelWidth: {
       type: [Number, String],

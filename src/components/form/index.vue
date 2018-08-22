@@ -16,7 +16,8 @@
         v-bind="$attrs"
         v-on="$listeners"
 
-        @change="handleChange">
+        @change="handleChange"
+        @reset="handleReset">
       </dy-form-item>
 
     </form>
@@ -34,6 +35,12 @@ export default {
   },
 
   methods: {
+    handleReset() {
+      this.formList.forEach((item) => {
+        this.$emit(`update:${item.modelKey}`, undefined);
+      });
+    },
+
     handleChange(e) {
       this.$emit(`update:${e.modelKey}`, e.modelValue);
 
