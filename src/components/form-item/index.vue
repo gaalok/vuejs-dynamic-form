@@ -50,6 +50,7 @@
       <dy-button
         :label="itemConfig.label"
         :listen="itemConfig.listen"
+        :native-type="itemConfig.nativeType"
 
         v-bind="$attrs"
         v-on="$listeners"

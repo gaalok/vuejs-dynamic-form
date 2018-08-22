@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="nativeType"
     :disabled="disabled"
     @click="handleClick">
     {{label}}
@@ -13,6 +14,10 @@ export default {
   props: {
     label: String,
     listen: String,
+    nativeType: {
+      type: String,
+      default: 'button'
+    },
 
     disabled: Boolean,
   },

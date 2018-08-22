@@ -75,6 +75,11 @@ export default {
             label: '提交',
             listen: 'formSubmit',
           },
+          {
+            type: 'button',
+            nativeType: 'reset',
+            label: '清空'
+          },
         ],
       };
 
