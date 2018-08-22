@@ -103,9 +103,8 @@ export default {
     mockData() {
       Promise.all([this.getFormConfig(), this.getFormData()]).then(() => {
         for (let item of this.formConfig.formList) {
-          if(typeof item.modelKey !== 'undefined'
-            && typeof this.formData[item.modelKey] === 'undefined') {
-              this.$set(this.formData, item.modelKey, undefined);
+          if(item.modelKey !== undefined && this.formData[item.modelKey] === undefined) {
+            this.$set(this.formData, item.modelKey, undefined);
           }
         }
       });

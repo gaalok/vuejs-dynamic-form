@@ -37,7 +37,14 @@ export default {
   methods: {
     handleReset() {
       this.formList.forEach((item) => {
-        this.$emit(`update:${item.modelKey}`, undefined);
+        const target = this.$attrs[item.modelKey];
+
+        if (!(target === undefined
+          || target === null
+          || target === ''
+          || Array.isArray(target) && target.length === 0)) {
+          this.$emit(`update:${item.modelKey}`, undefined);
+        }
       });
     },
 
