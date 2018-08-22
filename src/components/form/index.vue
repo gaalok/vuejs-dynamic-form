@@ -12,8 +12,6 @@
         :key="index"
 
         :item-config="item"
-        :model-key="item.modelKey"
-        :model-value="model[item.modelKey]"
 
         v-bind="$attrs"
         v-on="$listeners"
@@ -30,35 +28,18 @@ export default {
   name: 'DyForm',
 
   props: {
-    model: {
-      required: true,
-      type: Object,
-    },
-
-    formList: {
-      required: true,
-      type: Array,
-    },
-
+    formList: Array,
     inline: Boolean,
     labelPosition: String,
   },
 
   methods: {
     handleChange(e) {
-      this.model[e.modelKey] = e.modelValue;
+      this.$emit(`update:${e.modelKey}`, e.modelValue);
 
       if (e.listen) {
         this.$emit(e.listen, e);
       }
-    },
-
-    handleClick(item, e) {
-      e.preventDefault();
-      this.$emit(item.on, {
-        handler: item.handler,
-        event: e,
-      });
     },
   },
 };

@@ -1,13 +1,11 @@
 <template>
   <div id="app">
     <dy-form
-      :model="formData"
-      :form-list="formList"
-      :label-width="labelWidth"
+      v-bind.sync="formData"
+      :form-list="formConfig.formList"
+      :inline="formConfig.inline"
+      :label-width="formConfig.labelWidth"
       form-item-class="form-group"
-      :inline="inline"
-      @usernameChange="handleChange"
-      @provinceChange="handleChange"
       @formSubmit="handleSubmit">
     </dy-form>
   </div>
@@ -20,69 +18,91 @@ export default {
   data() {
     return {
       formData: {},
-
-      labelWidth: 80,
-      inline: true,
-
-      formList: [
-        {
-          type: 'text',
-          label: '账号',
-          modelKey: 'username',
-          placeholder: '请输入账号',
-          listen: 'usernameChange',
-        },
-        {
-          type: 'password',
-          label: '密码',
-          modelKey: 'password',
-          placeholder: '请输入密码',
-        },
-        {
-          type: 'select',
-          label: '省',
-          modelKey: 'province',
-          placeholder: '请选择省',
-          options: [
-            { value: '1', label: '111' },
-            { value: '2', label: '122' },
-            { value: '3', label: '133' },
-          ],
-          // optionsUrl: './mock/options.json',
-          listen: 'provinceChange',
-        },
-        {
-          label: '开始时间',
-          type: 'datepicker',
-          modelKey: 'startDate',
-          placeholder: '请选择日期',
-        },
-        {
-          type: 'button',
-          label: '提交',
-          listen: 'formSubmit',
-        },
-      ],
+      formConfig: {},
     };
   },
 
   mounted() {
-    setTimeout(() => this.mockData(), 1000);
+    this.mockData();
   },
 
   methods: {
-    mockData() {
-      const obj = {
-        username: 'xujiale',
-        password: '123456',
-        province: '2',
-      };
-
-      this.formData = obj;
+    sleep (ms) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms);
+      });
     },
 
-    handleChange(e) {
-      console.log(e);
+    getFormConfig() {
+      const config = {
+        labelWidth: 80,
+        inline: true,
+        formList: [
+          {
+            type: 'text',
+            label: '账号',
+            modelKey: 'username',
+            placeholder: '请输入账号',
+          },
+          {
+            type: 'password',
+            label: '密码',
+            modelKey: 'password',
+            placeholder: '请输入密码',
+          },
+          {
+            type: 'select',
+            label: '省',
+            modelKey: 'province',
+            placeholder: '请选择省',
+            // options: [
+            //   { value: '1', label: '111' },
+            //   { value: '2', label: '122' },
+            //   { value: '3', label: '133' },
+            // ],
+            optionsUrl: 'http://192.168.56.1:8000/sponsor.json',
+            listen: 'provinceChange',
+          },
+          {
+            label: '开始时间',
+            type: 'datepicker',
+            modelKey: 'startDate',
+            placeholder: '请选择日期',
+          },
+          {
+            type: 'button',
+            label: '提交',
+            listen: 'formSubmit',
+          },
+        ],
+      };
+
+      return this.sleep(1000).then(() => {
+        this.formConfig = config;
+      });
+    },
+
+    getFormData() {
+      const data =  {
+        username: 'test',
+        province: '2',
+        startDate: new Date(),
+      };
+
+      return this.sleep(500).then(() => {
+        this.formData = data;
+      })
+    },
+
+    mockData() {
+      Promise.all([this.getFormConfig(), this.getFormData()]).then(() => {
+        for (let item of this.formConfig.formList) {
+          if(typeof item.modelKey !== 'undefined'
+            && typeof this.formData[item.modelKey] === 'undefined') {
+              this.$set(this.formData, item.modelKey, undefined);
+          }
+        }
+      });
     },
 
     handleSubmit(e) {

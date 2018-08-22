@@ -16,6 +16,7 @@
     "src"
   ],
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "vue": "^2.5.11",
     "vuejs-datepicker": "^1.5.3"
   },

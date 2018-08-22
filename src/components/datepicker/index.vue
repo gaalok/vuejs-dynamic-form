@@ -5,7 +5,7 @@
       format="yyyy-MM-dd"
       :placeholder="placeholder"
       :disabled="disabled"
-      v-model="date"
+      :value="modelValue"
       @selected="handleSelected">
     </datepicker>
   </div>
@@ -31,15 +31,12 @@ export default {
       type: String,
     },
 
-    modelValue: {
-      type: [String, Number],
-    },
+    modelValue: [String, Number, Date],
   },
 
   data() {
     return {
       zh,
-      date: '',
     };
   },
 

@@ -19,6 +19,9 @@
         v-bind="$attrs"
         v-on="$listeners"
 
+        :model-key="itemConfig.modelKey"
+        :model-value="$attrs[itemConfig.modelKey]"
+
         :placeholder="itemConfig.placeholder"
         :readonly="itemConfig.readonly"
         :disabled="itemConfig.disabled">
@@ -33,6 +36,9 @@
 
         v-bind="$attrs"
         v-on="$listeners"
+
+        :model-key="itemConfig.modelKey"
+        :model-value="$attrs[itemConfig.modelKey]"
 
         :placeholder="itemConfig.placeholder"
         :readonly="itemConfig.readonly"
@@ -60,12 +66,15 @@
 
         :listen="itemConfig.listen"
 
+        :model-key="itemConfig.modelKey"
+        :model-value="$attrs[itemConfig.modelKey]"
+
         :placeholder="itemConfig.placeholder"
         :disabled="itemConfig.disabled"
       ></dy-datepicker>
     </template>
 
-    <div v-else>未知类型组件</div>
+    <div v-else style="background: red;">未知类型组件</div>
 
   </div>
 </template>

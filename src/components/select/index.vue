@@ -1,10 +1,10 @@
 <template>
   <div class="dy-select">
     <select
-      :value="modelValue"
-      @change="handleChange"
+      v-model="selected"
       :readonly="readonly"
-      :disabled="disabled">
+      :disabled="disabled"
+      @change="handleChange">
 
       <option value="">{{ placeholder }}</option>
 
@@ -36,15 +36,20 @@ export default {
       type: String,
     },
 
-    modelValue: {
-      type: [String, Number],
-    },
+    modelValue: [String, Number],
   },
 
   data() {
     return {
+      selected: '',
       optionsFromUrl: [],
     };
+  },
+
+  watch: {
+    modelValue(value) {
+      this.selected = value;
+    },
   },
 
   computed: {
@@ -69,7 +74,8 @@ export default {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             const data = JSON.parse(xhr.responseText);
-            this.optionsFromUrl = data;
+            this.optionsFromUrl = data || [];
+            this.selected = this.modelValue;
           }
         }
       };
