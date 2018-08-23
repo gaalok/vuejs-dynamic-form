@@ -71,9 +71,18 @@ export default {
             placeholder: '请选择日期',
           },
           {
+            label: '范围',
+            type: 'range',
+            rangeType: 'text',
+            modelKey: ['range1', 'range2'],
+            unitLabel: '元',
+
+          },
+          {
             type: 'button',
             label: '提交',
             listen: 'formSubmit',
+            newRow: true,
           },
           {
             type: 'button',
@@ -103,8 +112,17 @@ export default {
     mockData() {
       Promise.all([this.getFormConfig(), this.getFormData()]).then(() => {
         for (let item of this.formConfig.formList) {
-          if(item.modelKey !== undefined && this.formData[item.modelKey] === undefined) {
-            this.$set(this.formData, item.modelKey, undefined);
+          if (typeof item.modelKey === 'string') {
+            if(item.modelKey !== undefined && this.formData[item.modelKey] === undefined) {
+              this.$set(this.formData, item.modelKey, undefined);
+            }
+          } else if (Array.isArray(item.modelKey)) {
+            if(item.modelKey[0] !== undefined && this.formData[item.modelKey[0]] === undefined) {
+              this.$set(this.formData, item.modelKey[0], undefined);
+            }
+            if(item.modelKey[1] !== undefined && this.formData[item.modelKey[1]] === undefined) {
+              this.$set(this.formData, item.modelKey[1], undefined);
+            }
           }
         }
       });
@@ -117,3 +135,10 @@ export default {
   },
 };
 </script>
+
+<style lang="less">
+.form-group {
+  box-sizing: border-box;
+  width: 33%;
+}
+</style>

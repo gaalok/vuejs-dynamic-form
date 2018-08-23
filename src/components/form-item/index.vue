@@ -3,9 +3,12 @@
     class="dy-form-item"
     :class="[itemConfig.type !== 'button' ? formItemClass : '']">
 
-    <label class="dy-label"
+    <label
+      class="dy-label"
       v-if="itemConfig.type !== 'button'"
-      :style="labelStyle">{{itemConfig.label}}</label>
+      :style="labelStyle">
+      {{itemConfig.label}}
+    </label>
 
     <template
       v-if="itemConfig.type === 'text'
@@ -59,8 +62,7 @@
       </dy-button>
     </template>
 
-    <template
-      v-else-if="itemConfig.type === 'datepicker'">
+    <template v-else-if="itemConfig.type === 'datepicker'">
       <dy-datepicker
         v-bind="$attrs"
         v-on="$listeners"
@@ -71,8 +73,82 @@
         :model-value="$attrs[itemConfig.modelKey]"
 
         :placeholder="itemConfig.placeholder"
-        :disabled="itemConfig.disabled"
-      ></dy-datepicker>
+        :disabled="itemConfig.disabled">
+      </dy-datepicker>
+    </template>
+
+    <template
+      v-else-if="itemConfig.type === 'range'
+        && itemConfig.rangeType === 'text'">
+
+      <dy-input
+        :type="itemConfig.rangeType"
+        :listen="itemConfig.listen"
+
+        v-bind="$attrs"
+        v-on="$listeners"
+
+        :model-key="itemConfig.modelKey[0]"
+        :model-value="$attrs[itemConfig.modelKey[0]]"
+
+        :placeholder="itemConfig.placeholder"
+        :readonly="itemConfig.readonly"
+        :disabled="itemConfig.disabled">
+      </dy-input>
+
+        -
+
+      <dy-input
+        :type="itemConfig.rangeType"
+        :listen="itemConfig.listen"
+
+        v-bind="$attrs"
+        v-on="$listeners"
+
+        :model-key="itemConfig.modelKey[1]"
+        :model-value="$attrs[itemConfig.modelKey[1]]"
+
+        :placeholder="itemConfig.placeholder"
+        :readonly="itemConfig.readonly"
+        :disabled="itemConfig.disabled">
+      </dy-input>
+
+      {{ itemConfig.unitLabel }}
+    </template>
+
+    <template
+      v-else-if="itemConfig.type === 'range'
+        && itemConfig.rangeType === 'datepicker'">
+
+      <dy-datepicker
+        v-bind="$attrs"
+        v-on="$listeners"
+
+        :listen="itemConfig.listen"
+
+        :model-key="itemConfig.modelKey[0]"
+        :model-value="$attrs[itemConfig.modelKey[0]]"
+
+        :placeholder="itemConfig.placeholder"
+        :disabled="itemConfig.disabled">
+      </dy-datepicker>
+
+        -
+
+      <dy-datepicker
+        v-bind="$attrs"
+        v-on="$listeners"
+
+        :listen="itemConfig.listen"
+
+        :model-key="itemConfig.modelKey[1]"
+        :model-value="$attrs[itemConfig.modelKey[1]]"
+
+        :placeholder="itemConfig.placeholder"
+        :disabled="itemConfig.disabled">
+      </dy-datepicker>
+
+      {{ itemConfig.unitLabel }}
     </template>
 
     <div v-else style="background: red;">未知类型组件</div>

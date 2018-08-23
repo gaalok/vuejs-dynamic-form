@@ -6,7 +6,7 @@
       :type="type"
       :placeholder="placeholder"
       :readonly="readonly"
-      :disabled="disabled">
+      :disabled="disabled" />
   </div>
 </template>
 
