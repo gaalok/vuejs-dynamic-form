@@ -18,19 +18,43 @@ Vue.use(VuejsDynamicForm);
 ```
 ## Demo
 ```html
-<dy-form
-  v-bind.sync="formData"
-  :form-list="formConfig.formList"
-  @provinceChange="provinceChange"
-  @formSubmit="formSubmit">
-</dy-form>
+<template>
+  <div id="app">
+    <dy-form
+      v-bind.sync="formData"
+      :form-list="formConfig.formList"
+      :inline="formConfig.inline"
+      :label-width="formConfig.labelWidth"
+      form-item-class="form-group"
+      @formSubmit="handleSubmit">
+    </dy-form>
+  </div>
+</template>
 
 <script>
 export default {
+  name: 'app',
+
   data() {
     return {
       formData: {},
-      formConfig: {
+      formConfig: {},
+    };
+  },
+
+  mounted() {
+    this.mockData();
+  },
+
+  methods: {
+    sleep (ms) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms);
+      });
+    },
+
+    getFormConfig() {
+      const config = {
         labelWidth: 80,
         inline: true,
         formItemClass: 'form-group',
@@ -76,25 +100,44 @@ export default {
             nativeType: 'reset',
             label: '清空'
           },
-        ]
-      },
-    };
-  },
+        ],
+      };
 
-  mounted() {
-    for (let item of this.formConfig.formList) {
-      if(item.modelKey !== undefined && this.formData[item.modelKey] === undefined) {
-        this.$set(this.formData, item.modelKey, undefined);
-      }
-    }
-  },
+      return this.sleep(1000).then(() => {
+        this.formConfig = config;
+      });
+    },
 
-  methods: {
-    provinceChange() {},
-    formSubmit() {},
-  }
-}
+    getFormData() {
+      const data =  {
+        username: 'test',
+        province: '2',
+        startDate: new Date(),
+      };
+
+      return this.sleep(500).then(() => {
+        this.formData = data;
+      })
+    },
+
+    mockData() {
+      Promise.all([this.getFormConfig(), this.getFormData()]).then(() => {
+        for (let item of this.formConfig.formList) {
+          if(item.modelKey !== undefined && this.formData[item.modelKey] === undefined) {
+            this.$set(this.formData, item.modelKey, undefined);
+          }
+        }
+      });
+    },
+
+    handleSubmit(e) {
+      e.preventDefault();
+      console.log({ ...this.formData });
+    },
+  },
+};
 </script>
+
 ```
 
 ## Available props
