@@ -155,7 +155,7 @@ Prop|Type|options|Description
 type|String|text/password/select/datepicker/button|表单项的类型
 label|String|-|表单项label
 modelKey|String|-|表单项的key，可以绑定到v-bind.sync的值
-placeholder:String|-|占位符
+placeholder|String|-|占位符
 options|Array|-|select的options
 optionsUrl|String|-|select从服务器拉取options
 listen|String|-|表单项监听的事件
