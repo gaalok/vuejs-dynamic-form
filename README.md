@@ -142,7 +142,7 @@ export default {
 
 ## Available props
 Prop|Type|Description
--|-|-|-
+-|-|-
 form-list|Array|表单组件列表
 inline|Boolean|行内表单模式
 label-position|String|label的align方式
