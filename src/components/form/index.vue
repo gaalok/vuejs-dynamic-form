@@ -1,64 +1,47 @@
 <template>
-  <div>
-    <form
-      class="dy-form"
-      :class="{
-        'dy-form-inline': inline,
-        'dy-label-left': labelPosition === 'left',
-      }">
+  <Form
+    :model="value"
+    :inline="formConfig.inline"
+    :label-width="formConfig.labelWidth"
+    :label-position="formConfig.labelPosition">
 
-      <dy-form-item
-        v-for="(item, index) in formList"
-        :key="index"
+    <DyFormItem
+      v-for="(item, index) in formConfig.formItemList"
+      :key="index"
+      :item-config="item"
+      :value="value[item.key]"
+      :class="formConfig.formItemClass"
+      :form-item-content-class="formConfig.formItemContentClass"
+      @input="handleInput($event, item.key)">
+    </DyFormItem>
 
-        :item-config="item"
-
-        v-bind="$attrs"
-        v-on="$listeners"
-
-        @change="handleChange"
-        @reset="handleReset">
-      </dy-form-item>
-
-    </form>
-  </div>
+  </Form>
 </template>
 
 <script>
+import DyFormItem from '@/components/form-item/index.vue';
+
 export default {
   name: 'DyForm',
 
+  components: { DyFormItem },
+
   props: {
-    formList: Array,
-    inline: Boolean,
-    labelPosition: String,
+    value: {
+      type: Object,
+      required: true,
+    },
+
+    formConfig: {
+      type: Object,
+      required: true,
+    },
   },
 
   methods: {
-    handleReset() {
-      this.formList.forEach((item) => {
-        const target = this.$attrs[item.modelKey];
-
-        if (!(target === undefined
-          || target === null
-          || target === ''
-          || Array.isArray(target) && target.length === 0)) {
-          this.$emit(`update:${item.modelKey}`, undefined);
-        }
-      });
-    },
-
-    handleChange(e) {
-      this.$emit(`update:${e.modelKey}`, e.modelValue);
-
-      if (e.listen) {
-        this.$emit(e.listen, e);
-      }
+    handleInput(val, key) {
+      this.$emit('input', { ...this.value, [key]: val })
     },
   },
 };
 </script>
-
-<style lang="less">
-@import '~../../styles/index.less';
-</style>

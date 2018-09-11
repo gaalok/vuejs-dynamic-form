@@ -1,21 +1,7 @@
-import Input from './components/input';
-import Form from './components/form';
-import FormItem from './components/form-item';
-import Select from './components/select';
-import Button from './components/button';
-import Datepicker from './components/datepicker';
-
-const components = [
-  Input,
-  Form,
-  FormItem,
-  Select,
-  Button,
-  Datepicker,
-];
+import DyForm from '@/components/form/index.vue';
 
 const install = (Vue) => {
-  components.forEach(component => Vue.component(component.name, component));
+  Vue.component(DyForm.name, DyForm);
 };
 
 if (typeof window !== 'undefined' && window.Vue) {

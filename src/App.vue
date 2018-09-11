@@ -1,144 +1,107 @@
 <template>
   <div id="app">
     <dy-form
-      v-bind.sync="formData"
-      :form-list="formConfig.formList"
-      :inline="formConfig.inline"
-      :label-width="formConfig.labelWidth"
-      form-item-class="form-group"
-      @formSubmit="handleSubmit">
+      v-model="formModel"
+      :form-config="formConfig">
     </dy-form>
   </div>
 </template>
 
 <script>
+import DyForm from '@/components/form/index.vue';
+
 export default {
   name: 'app',
 
+  components: { DyForm },
+
   data() {
     return {
-      formData: {},
-      formConfig: {},
+      formModel: {},
+      formConfig: {
+        formItemList: [],
+      },
     };
   },
 
   mounted() {
-    this.mockData();
+    this.getFormConfig();
+    this.getFormData();
   },
 
   methods: {
-    sleep (ms) {
-      return new Promise((resolve, reject) => {
+    sleep(ms) {
+      return new Promise((resolve) => {
         setTimeout(resolve, ms);
       });
     },
 
     getFormConfig() {
-      const config = {
-        labelWidth: 80,
+      const formConfig = {
         inline: true,
+        labelWidth: 80,
+        labelPosition: 'right',
         formItemClass: 'form-group',
-        formList: [
+        formItemContentClass: 'form-content',
+        formItemList: [
           {
-            type: 'text',
+            type: 'input',
+            subType: 'text',
+            key: 'username',
             label: '账号',
-            modelKey: 'username',
+            value: '111',
             placeholder: '请输入账号',
           },
           {
-            type: 'password',
-            label: '密码',
-            modelKey: 'password',
-            placeholder: '请输入密码',
-          },
-          {
             type: 'select',
-            label: '省',
-            modelKey: 'province',
-            placeholder: '请选择省',
-            // options: [
-            //   { value: '1', label: '111' },
-            //   { value: '2', label: '122' },
-            //   { value: '3', label: '133' },
-            // ],
-            optionsUrl: 'http://192.168.56.1:8000/sponsor.json',
-            listen: 'provinceChange',
+            key: 'province',
+            label: '省份',
+            placeholder: '请选择',
+            options: [
+              { value: '1', label: '111' },
+              { value: '2', label: '122' },
+              { value: '3', label: '133' },
+            ],
           },
           {
-            label: '开始时间',
             type: 'datepicker',
-            modelKey: 'startDate',
+            key: 'date',
+            label: '日期',
             placeholder: '请选择日期',
           },
           {
-            label: '范围',
-            type: 'range',
-            rangeType: 'text',
-            modelKey: ['range1', 'range2'],
-            unitLabel: '元',
-
-          },
-          {
-            type: 'button',
-            label: '提交',
-            listen: 'formSubmit',
-            newRow: true,
-          },
-          {
-            type: 'button',
-            nativeType: 'reset',
-            label: '清空'
+            type: 'datepicker',
+            subType: 'daterange',
+            key: 'daterange',
+            label: '日期范围',
+            placeholder: '请选择日期范围',
           },
         ],
       };
 
       return this.sleep(1000).then(() => {
-        this.formConfig = config;
+        this.formConfig = formConfig;
       });
     },
 
     getFormData() {
-      const data =  {
+      const data = {
         username: 'test',
         province: '2',
-        startDate: new Date(),
+        date: new Date(),
       };
 
       return this.sleep(500).then(() => {
-        this.formData = data;
-      })
-    },
-
-    mockData() {
-      Promise.all([this.getFormConfig(), this.getFormData()]).then(() => {
-        for (let item of this.formConfig.formList) {
-          if (typeof item.modelKey === 'string') {
-            if(item.modelKey !== undefined && this.formData[item.modelKey] === undefined) {
-              this.$set(this.formData, item.modelKey, undefined);
-            }
-          } else if (Array.isArray(item.modelKey)) {
-            if(item.modelKey[0] !== undefined && this.formData[item.modelKey[0]] === undefined) {
-              this.$set(this.formData, item.modelKey[0], undefined);
-            }
-            if(item.modelKey[1] !== undefined && this.formData[item.modelKey[1]] === undefined) {
-              this.$set(this.formData, item.modelKey[1], undefined);
-            }
-          }
-        }
+        // this.formModel = data;
       });
     },
 
-    handleSubmit(e) {
-      e.preventDefault();
-      console.log({ ...this.formData });
-    },
   },
 };
 </script>
 
-<style lang="less">
-.form-group {
-  box-sizing: border-box;
-  width: 33%;
+<style>
+.form-content {
+  width: 200px;
 }
 </style>
