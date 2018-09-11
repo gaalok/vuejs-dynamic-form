@@ -1,13 +1,18 @@
 {
   "name": "vuejs-dynamic-form",
-  "version": "0.1.0",
-  "private": true,
+  "description": "dynamic form based on vuejs and iview",
+  "version": "0.0.4",
+  "author": "gaalok",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/vuejs-dynamic-form.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "iview": "^3.1.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
